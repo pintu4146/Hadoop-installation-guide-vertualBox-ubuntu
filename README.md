@@ -1,12 +1,12 @@
-## Hadoop-istallation-guide
-# step by step guide to install hadoop on vertualBox linux os
+# Hadoop-installation-guide
+## step by step guide to install hadoop on vertualBox linux os
 
 before starting upgrade ubuntu
 >> sudo get-apt upgrade
 
 Install java jdk 8
 
-sudo apt install openjdk-8-jdk
+>> sudo apt install openjdk-8-jdk
 
 To check it’s there cd /usr/lib/jvm
 
@@ -129,7 +129,7 @@ format the file system
 To start
 ```
 >> start-all.sh(Start NameNode daemon and DataNode daemon) 
-localhost:9870
+localhost:9870 (open thisto see web view of hadoop run)
 >> pintu@pintu:~$ hadoop fs -mkdir /user
 >> pintu@pintu:~$ hadoop fs -mkdir /user/pintu
 >> pintu@pintu:~$ touch demo.csv
