@@ -49,78 +49,85 @@ now open hadoop-env.h
 >> sudo nano hadoop-env.hJAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 
 (set the path for JAVA_HOME)
 
-core-site.xml
-
+### core-site.xml
+>> pintu@pintu:~$ cd hadoop-3.3.4/etc/hadoop/ && sudo nano core-site.xml
+>> (copy paste below configuration at the bottom)
 <configuration> 
- <property> 
- <name>fs.defaultFS</name> 
- <value>hdfs://localhost:9000</value>  </property> 
- <property> 
-<name>hadoop.proxyuser.dataflair.groups</name> <value>*</value> 
- </property> 
- <property> 
-<name>hadoop.proxyuser.dataflair.hosts</name> <value>*</value> 
- </property> 
- <property> 
-<name>hadoop.proxyuser.server.hosts</name> <value>*</value> 
- </property> 
- <property> 
-<name>hadoop.proxyuser.server.groups</name> <value>*</value> 
- </property> 
+     <property> 
+     <name>fs.defaultFS</name> 
+     <value>hdfs://localhost:9000</value>  </property> 
+     <property> 
+     <name>hadoop.proxyuser.dataflair.groups</name> <value>*</value> 
+     </property> 
+     <property> 
+     <name>hadoop.proxyuser.dataflair.hosts</name> <value>*</value> 
+     </property> 
+     <property> 
+     <name>hadoop.proxyuser.server.hosts</name> <value>*</value> 
+     </property> 
+     <property> 
+     <name>hadoop.proxyuser.server.groups</name> <value>*</value> 
+     </property> 
 </configuration>
 
-hdfs-site.xml
-
+### hdfs-site.xml
+>> pintu@pintu:~$ cd hadoop-3.3.4/etc/hadoop/ && sudo hdfs-site.xml
+>> (copy paste below configuration at the bottom)
 <configuration> 
- <property> 
- <name>dfs.replication</name> 
- <value>1</value> 
- </property> 
+    <property> 
+    <name>dfs.replication</name> 
+    <value>1</value> 
+    </property> 
 </configuration>
 
-mapred-site.xml
-
+### mapred-site.xml
+>> pintu@pintu:~$ cd hadoop-3.3.4/etc/hadoop/ && sudo mapred-site.xml
+>> (copy paste below configuration at the bottom)
 <configuration> 
- <property> 
- <name>mapreduce.framework.name</name>  <value>yarn</value> 
- </property> 
- <property>
- <name>mapreduce.application.classpath</name> 
-  
-<value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value> 
- </property> 
+     <property> 
+     <name>mapreduce.framework.name</name>  <value>yarn</value> 
+     </property> 
+     <property>
+     <name>mapreduce.application.classpath</name> 
+
+    <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value> 
+     </property> 
 </configuration>
 
-yarn-site.xml
+### yarn-site.xml
+>> pintu@pintu:~$ cd hadoop-3.3.4/etc/hadoop/ && sudo yarn-site.xml
+>> (copy paste below configuration at the bottom)
 
 <configuration> 
- <property> 
- <name>yarn.nodemanager.aux-services</name> 
- <value>mapreduce_shuffle</value> 
- </property> 
- <property> 
- <name>yarn.nodemanager.env-whitelist</name> 
-  
-<value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREP END_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value> 
- </property> 
+    <property> 
+    <name>yarn.nodemanager.aux-services</name> 
+    <value>mapreduce_shuffle</value> 
+    </property> 
+    <property> 
+    <name>yarn.nodemanager.env-whitelist</name> 
+
+   <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREP END_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value> 
+    </property> 
 </configuration>
 
-ssh
+ssh(setting passwordless ssh)
 
-ssh localhost 
-ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa 
-cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys 
-chmod 0600 ~/.ssh/authorized_keys 
-hadoop-3.3.4/bin/hdfs namenode -format
+>> ssh localhost 
+>> ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa 
+>> cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys 
+>> chmod 0600 ~/.ssh/authorized_keys 
+>> hadoop-3.3.4/bin/hdfs namenode -format
 
 format the file system
 
-export PDSH_RCMD_TYPE=ssh
+>> export PDSH_RCMD_TYPE=ssh
 
 To start
 
-start-all.sh(Start NameNode daemon and DataNode daemon) 
-localhost:9870codewitharjun@cwa:~$ hadoop fs -mkdir /user
-codewitharjun@cwa:~$ hadoop fs -mkdir /user/arjun.gautam
-codewitharjun@cwa:~$ touch demo.csv
-codewitharjun@cwa:~$ hadoop fs -put demo.csv /user/arjun.gautamstop-all.sh
+>> start-all.sh(Start NameNode daemon and DataNode daemon) 
+localhost:9870
+>> pintu@pintu:~$ hadoop fs -mkdir /user
+>> pintu@pintu:~$ hadoop fs -mkdir /user/pintu
+>> pintu@pintu:~$ touch demo.csv
+>> pintu@pintu:~$ hadoop fs -put demo.csv /user/pintu
+>> stop-all.sh
