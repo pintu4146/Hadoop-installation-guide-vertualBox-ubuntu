@@ -18,7 +18,7 @@ open .bashrc file and paste these commands
 >> sudo nano .bashrc
 (then paste all export mention below in .bashrc file at the bottom)
 [ NOTE: Dont forget to change Hadoop version or java version in case you have used different from hadoop-3.3.4 or java-8-openjdk-amd64 ]
-
+```
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 
 export PATH=$PATH:/usr/lib/jvm/java-8-openjdk-amd64/bin 
 export HADOOP_HOME=~/hadoop-3.3.4/ 
@@ -32,7 +32,7 @@ export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
 export HADOOP_STREAMING=$HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.3.4.jar
 export HADOOP_LOG_DIR=$HADOOP_HOME/logs 
 export PDSH_RCMD_TYPE=ssh
-
+```
 ( ssh — secure shell — protocol used to securely connect to remote server/system — transfers data in encrypted form)
 
 >> sudo apt-get install ssh
@@ -45,13 +45,15 @@ export PDSH_RCMD_TYPE=ssh
 
 >> cd hadoop-3.3.4/etc/hadoop
 
-now open hadoop-env.h
->> sudo nano hadoop-env.hJAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 
-(set the path for JAVA_HOME)
+now open hadoop-env.sh
+>> sudo nano hadoop-env.sh
+>> JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 
+(set the path for JAVA_HOME in the hadoop-env.sh file )
 
 ### core-site.xml
 >> pintu@pintu:~$ cd hadoop-3.3.4/etc/hadoop/ && sudo nano core-site.xml
 >> (copy paste below configuration at the bottom)
+```
 <configuration> 
      <property> 
      <name>fs.defaultFS</name> 
@@ -69,20 +71,22 @@ now open hadoop-env.h
      <name>hadoop.proxyuser.server.groups</name> <value>*</value> 
      </property> 
 </configuration>
-
+```
 ### hdfs-site.xml
 >> pintu@pintu:~$ cd hadoop-3.3.4/etc/hadoop/ && sudo hdfs-site.xml
 >> (copy paste below configuration at the bottom)
+```
 <configuration> 
     <property> 
     <name>dfs.replication</name> 
     <value>1</value> 
     </property> 
 </configuration>
-
+```
 ### mapred-site.xml
 >> pintu@pintu:~$ cd hadoop-3.3.4/etc/hadoop/ && sudo mapred-site.xml
 >> (copy paste below configuration at the bottom)
+```
 <configuration> 
      <property> 
      <name>mapreduce.framework.name</name>  <value>yarn</value> 
@@ -93,11 +97,11 @@ now open hadoop-env.h
     <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value> 
      </property> 
 </configuration>
-
+```
 ### yarn-site.xml
 >> pintu@pintu:~$ cd hadoop-3.3.4/etc/hadoop/ && sudo yarn-site.xml
 >> (copy paste below configuration at the bottom)
-
+```
 <configuration> 
     <property> 
     <name>yarn.nodemanager.aux-services</name> 
@@ -109,21 +113,21 @@ now open hadoop-env.h
    <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREP END_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value> 
     </property> 
 </configuration>
-
+```
 ssh(setting passwordless ssh)
-
+```
 >> ssh localhost 
 >> ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa 
 >> cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys 
 >> chmod 0600 ~/.ssh/authorized_keys 
 >> hadoop-3.3.4/bin/hdfs namenode -format
-
+```
 format the file system
 
 >> export PDSH_RCMD_TYPE=ssh
 
 To start
-
+```
 >> start-all.sh(Start NameNode daemon and DataNode daemon) 
 localhost:9870
 >> pintu@pintu:~$ hadoop fs -mkdir /user
@@ -131,3 +135,4 @@ localhost:9870
 >> pintu@pintu:~$ touch demo.csv
 >> pintu@pintu:~$ hadoop fs -put demo.csv /user/pintu
 >> stop-all.sh
+```
