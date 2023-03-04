@@ -51,7 +51,7 @@ now open hadoop-env.sh
 (set the path for JAVA_HOME in the hadoop-env.sh file )
 
 ### core-site.xml
->> pintu@pintu:~$ cd hadoop-3.3.4/etc/hadoop/ && sudo nano core-site.xml
+>> pintu@pintu:~$ sudo nano core-site.xml
 >> (copy paste below configuration at the bottom)
 ```
 <configuration> 
@@ -73,7 +73,7 @@ now open hadoop-env.sh
 </configuration>
 ```
 ### hdfs-site.xml
->> pintu@pintu:~$ cd hadoop-3.3.4/etc/hadoop/ && sudo hdfs-site.xml
+>> pintu@pintu:~$ sudo nano hdfs-site.xml
 >> (copy paste below configuration at the bottom)
 ```
 <configuration> 
@@ -84,7 +84,7 @@ now open hadoop-env.sh
 </configuration>
 ```
 ### mapred-site.xml
->> pintu@pintu:~$ cd hadoop-3.3.4/etc/hadoop/ && sudo mapred-site.xml
+>> pintu@pintu:~$ sudo nano mapred-site.xml
 >> (copy paste below configuration at the bottom)
 ```
 <configuration> 
@@ -99,7 +99,7 @@ now open hadoop-env.sh
 </configuration>
 ```
 ### yarn-site.xml
->> pintu@pintu:~$ cd hadoop-3.3.4/etc/hadoop/ && sudo yarn-site.xml
+>> pintu@pintu:~$ sudo nano yarn-site.xml
 >> (copy paste below configuration at the bottom)
 ```
 <configuration> 
